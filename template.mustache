@@ -1,0 +1,20 @@
+import ObjectMapper
+
+/*
+{{{originalJson}}}
+*/
+
+{{#models}}
+class {{{modelName}}} : {{{superClass}}} {
+	
+	{{#properties}}var {{name}} = {{{defaultValue}}}
+	{{/properties}}
+	override func mapping(map: Map) {
+
+        super.mapping(map: map)
+
+        {{#properties}}{{name}} <- map["{{mapperKey}}"]
+		{{/properties}}
+    }
+} 
+{{/models}}
