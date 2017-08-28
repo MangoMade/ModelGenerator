@@ -8,16 +8,27 @@
 
 import Foundation
 
-
 typealias JsonObject = [String: Any]
+
+let currentPath = Bundle.main.bundlePath
+
+/************************************/
+
+struct Path {
+    static var json     = "\(currentPath)/response.json"
+    static var template = "\(currentPath)/template.mustache"
+    static var result   = "\(currentPath)/Result.swift"
+}
+ 
+/************************************/
+
 
 enum OperationError : Error {
     case jsonStringIsNil
 }
 
-let currentPath = Bundle.main.bundlePath
 
-let urlString = "\(currentPath)/response.json" /// json url
+let urlString = Path.json /// json url
 let url = URL(fileURLWithPath: urlString)
 
 var jsonString: String?
@@ -40,10 +51,10 @@ guard let jsonString = jsonString else {
 var renderObject = MustacheMapper(jsonString: jsonString).renderObject()
 
 do {
-    let template = try Template(path: "\(currentPath)/template.mustache") /// 模版url
+    let template = try Template(path: Path.template) /// 模版url
     let result = try template.render(renderObject)
     /// 结果url
-    let resultPath = "\(currentPath)/Result.swift"
+    let resultPath = Path.result
     if !FileManager.default.fileExists(atPath: resultPath) {
         FileManager.default.createFile(atPath: resultPath, contents: nil, attributes: nil)
     }
