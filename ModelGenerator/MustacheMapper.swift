@@ -11,6 +11,7 @@ import Foundation
 typealias ModelObject = [String: Any]
 typealias Properties  = [[String: Any]]
 
+let ignorable = ["error_msg", "error_code"]
 
 struct RenderKey {
     
@@ -22,7 +23,7 @@ struct RenderKey {
         struct Model {
             
             static var modelName  = "modelName"
-            static var superClass = "superClass"
+            static var isSubclass = "isSubclass"
             static var properties = "properties"
             
             struct Property {
@@ -55,7 +56,7 @@ class MustacheMapper {
         guard let json = jsonObject() else { return renderObj }
        
         models.removeAll()
-        parseModels(json: json, modelName: "<#name#>")
+        parseModels(json: json, modelName: "<#name#>", isSubclass: true)
         
         models.reverse()
         renderObj[RenderKey.File.models] = models
@@ -86,14 +87,14 @@ extension MustacheMapper {
 extension MustacheMapper {
 
   
-    fileprivate func parseModels(json: JsonObject, modelName: String) {
+    fileprivate func parseModels(json: JsonObject, modelName: String, isSubclass: Bool) {
         
         var properties = Properties()
         modelObject(json: json, properties: &properties)
         properties.reverse()
         let model: ModelObject = [
             RenderKey.File.Model.modelName : modelName,
-            RenderKey.File.Model.superClass: "Response",
+            RenderKey.File.Model.isSubclass: isSubclass,
             RenderKey.File.Model.properties: properties
         ]
         models.append(model)
@@ -104,7 +105,11 @@ extension MustacheMapper {
                                  properties: inout Properties) {
         
 
-        json.forEach { (key, value) in
+        for (key, value) in json {
+            
+            guard !ignorable.contains(key) else {
+                continue
+            }
             
             if let value = value as? JsonObject {
                 
@@ -114,7 +119,7 @@ extension MustacheMapper {
                 
                 if let aObject = objectArray.first {
                     let modelName = "Model\(models.count + 1)"
-                    parseModels(json: aObject, modelName: modelName)
+                    parseModels(json: aObject, modelName: modelName, isSubclass: false)
                     
                     let propertyMap = [
                         RenderKey.File.Model.Property.name          : key.lowerCamelCase,
@@ -137,6 +142,41 @@ extension MustacheMapper {
                 
             }
         }
+        
+//        json.forEach { (key, value) in
+//            
+//            
+//            if let value = value as? JsonObject {
+//                
+//                modelObject(json: value, mapperKeyPrefix: "\(key).", properties: &properties)
+//                
+//            } else if let objectArray = value as? Array<JsonObject> {
+//                
+//                if let aObject = objectArray.first {
+//                    let modelName = "Model\(models.count + 1)"
+//                    parseModels(json: aObject, modelName: modelName)
+//                    
+//                    let propertyMap = [
+//                        RenderKey.File.Model.Property.name          : key.lowerCamelCase,
+//                        RenderKey.File.Model.Property.mapperKey     : mapperKeyPrefix + key,
+//                        RenderKey.File.Model.Property.type          : modelName,
+//                        RenderKey.File.Model.Property.defaultValue  : "[\(modelName)]()"
+//                    ]
+//                    properties.append(propertyMap)
+//                }
+//                
+//            } else {
+//                
+//                let propertyMap = [
+//                    RenderKey.File.Model.Property.name          : key.lowerCamelCase,
+//                    RenderKey.File.Model.Property.mapperKey     : mapperKeyPrefix + key,
+//                    RenderKey.File.Model.Property.type          : mapType(value),
+//                    RenderKey.File.Model.Property.defaultValue  : mapDefaultValue(value)
+//                ]
+//                properties.append(propertyMap)
+//                
+//            }
+//        }
     }
     
     fileprivate func mapDefaultValue(_ value: Any) -> Any {

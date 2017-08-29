@@ -1,29 +1,25 @@
 {
-    "data": {
-        "isVerified": false, //账户激活状态
-        "login_time": "2天前", //上次登录
-        "unread": 0, //未读消息数
-        "head_img": "http://taian.xinmem.com/uploadfiles/large/b397c62aaa2ed624c813bbbfb1e44410.jpg", //头像地址
-        "count": 6, //红包+加席券
-        "balance": 1426.91, //总资产
-          "order": [  //用户订单
-            {
-                "price": "100", //投资金额
-                "money": "1.73",//预期收益
-                "goods_name": "测试商品支付", //商品名称
-                "duration": "3", // 时间
-                "duration_type": "月", //时间类型
-                "day": 82 //剩余天数
-            },
-            {
-                "price": "100",
-                "money": "2.7",
-                "goods_name": "测试商品支付",
-                "duration": "3",
-                "duration_type": "月",
-                "day": 74
-            }
-        ]
-    },
-
+    "data" : [
+                {
+            "author" : "管理员",
+            "btn_name" : "<null>",
+            "btn_url" : "<null>",
+            "content" : "<p>如何修改密码如何修改密码如何修改密码</p>",
+            "create_time" : "2017-08-01 11:14:52",
+            "create_uid" : "566953bbf746400ea9d25a575b9f4880",
+            "descs" : "",
+            "id": "567f486f82b347aba22c5045ec67e9f5",
+            "img" : "",
+            "pub" : 1,
+            "stat" : 1,
+            "title" : "如何修改密码",
+            "types" : 3,
+            "update_time" : "2017-08-29",
+            "update_uid" : "",
+            "video" : "",
+            "views" : 13,
+        },
+    ],
+    "error_code" : 0,
+    "error_msg" : "",
 }

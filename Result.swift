@@ -1,82 +1,62 @@
 import ObjectMapper
 
-/*
-{
-    "data": {
-        "isVerified": false, 
-        "login_time": "2天前", 
-        "unread": 0, 
-        "head_img": "", 
-        "count": 6, 
-        "balance": 1426.91, 
-          "order": [  
-            {
-                "price": "100", 
-                "money": "1.73",
-                "goods_name": "测试商品支付", 
-                "duration": "3", 
-                "duration_type": "月", 
-                "day": 82 
-            },
-            {
-                "price": "100",
-                "money": "2.7",
-                "goods_name": "测试商品支付",
-                "duration": "3",
-                "duration_type": "月",
-                "day": 74
-            }
-        ]
-    },
-
-}
-*/
-
-
 class <#name#> : Response {
 	
-	var order = [Model1]()
-	var isVerified = 0
-	var headImg = ""
-	var count = 0
-	var unread = 0
-	var loginTime = ""
-	var balance = 0
+	var data = [Model1]()
 	
 	override func mapping(map: Map) {
 
         super.mapping(map: map)
-
-        order <- map["data.order"]
-		isVerified <- map["data.isVerified"]
-		headImg <- map["data.head_img"]
-		count <- map["data.count"]
-		unread <- map["data.unread"]
-		loginTime <- map["data.login_time"]
-		balance <- map["data.balance"]
+    
+        data <- map["data"]
 		
     }
 } 
 
-class Model1 : Response {
+class Model1 : Mappable {
 	
-	var price = ""
-	var day = 0
-	var durationType = ""
-	var money = ""
-	var duration = ""
-	var goodsName = ""
+	var createTime = ""
+	var descs = ""
+	var title = ""
+	var btnName = ""
+	var btnUrl = ""
+	var video = ""
+	var updateUid = ""
+	var id = ""
+	var views = 0
+	var content = ""
+	var updateTime = ""
+	var createUid = ""
+	var types = 0
+	var author = ""
+	var pub = 0
+	var stat = 0
+	var img = ""
 	
-	override func mapping(map: Map) {
-
-        super.mapping(map: map)
-
-        price <- map["price"]
-		day <- map["day"]
-		durationType <- map["duration_type"]
-		money <- map["money"]
-		duration <- map["duration"]
-		goodsName <- map["goods_name"]
+	
+    required init?(map: Map) {
+        mapping(map: map)
+    }
+    
+    func mapping(map: Map) {
+    
+        createTime <- map["create_time"]
+		descs <- map["descs"]
+		title <- map["title"]
+		btnName <- map["btn_name"]
+		btnUrl <- map["btn_url"]
+		video <- map["video"]
+		updateUid <- map["update_uid"]
+		id <- map["id"]
+		views <- map["views"]
+		content <- map["content"]
+		updateTime <- map["update_time"]
+		createUid <- map["create_uid"]
+		types <- map["types"]
+		author <- map["author"]
+		pub <- map["pub"]
+		stat <- map["stat"]
+		img <- map["img"]
 		
     }
 } 

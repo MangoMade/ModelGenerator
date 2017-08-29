@@ -1,18 +1,18 @@
 import ObjectMapper
-
-/*
-{{{originalJson}}}
-*/
-
 {{#models}}
-class {{{modelName}}} : {{{superClass}}} {
+class {{{modelName}}} : {{# isSubclass }}Response{{/ isSubclass }}{{^ isSubclass }}Mappable{{/ isSubclass }} {
 	
 	{{#properties}}var {{name}} = {{{defaultValue}}}
 	{{/properties}}
-	override func mapping(map: Map) {
+	{{# isSubclass }}override func mapping(map: Map) {
 
-        super.mapping(map: map)
-
+        super.mapping(map: map){{/ isSubclass }}
+    {{^ isSubclass }}required init?(map: Map) {
+        mapping(map: map)
+    }
+    
+    func mapping(map: Map) {
+    {{/ isSubclass }}
         {{#properties}}{{name}} <- map["{{mapperKey}}"]
 		{{/properties}}
     }
