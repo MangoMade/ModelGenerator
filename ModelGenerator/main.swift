@@ -10,7 +10,11 @@ import Foundation
 
 typealias JsonObject = [String: Any]
 
-let currentPath = Bundle.main.bundlePath
+/// 打包时用这个路径
+//let currentPath = Bundle.main.bundlePath
+
+/// 测试采用这个路径，把路径替换成当前代码的文件夹
+let currentPath = "/Users/aqua/Desktop/myGithub/ModelGenerator"
 
 /************************************/
 
@@ -21,7 +25,6 @@ struct Path {
 }
  
 /************************************/
-
 
 enum OperationError : Error {
     case jsonStringIsNil

@@ -2,36 +2,29 @@ import ObjectMapper
 
 class <#name#> : Response {
 	
-	var data = [Model1]()
+	var banner = [Model5]()
+	var unread = 0
+	var goods = [Model3]()
+	var headlines = [Model2]()
 	
 	override func mapping(map: Map) {
 
         super.mapping(map: map)
     
-        data <- map["data"]
+        banner <- map["banner"]
+		unread <- map["unread"]
+		goods <- map["goods"]
+		headlines <- map["headlines"]
 		
     }
 } 
 
-class Model1 : Mappable {
+class Model2 : Mappable {
 	
-	var createTime = ""
-	var descs = ""
+	var cid = ""
 	var title = ""
-	var btnName = ""
-	var btnUrl = ""
-	var video = ""
-	var updateUid = ""
-	var id = ""
-	var views = 0
-	var content = ""
-	var updateTime = ""
-	var createUid = ""
-	var types = 0
-	var author = ""
-	var pub = 0
-	var stat = 0
-	var img = ""
+	var status = ""
+	var productId = ""
 	
 	
     required init?(map: Map) {
@@ -40,23 +33,80 @@ class Model1 : Mappable {
     
     func mapping(map: Map) {
     
-        createTime <- map["create_time"]
-		descs <- map["descs"]
+        cid <- map["cid"]
 		title <- map["title"]
-		btnName <- map["btn_name"]
-		btnUrl <- map["btn_url"]
-		video <- map["video"]
-		updateUid <- map["update_uid"]
+		status <- map["status"]
+		productId <- map["product_id"]
+		
+    }
+} 
+
+class Model3 : Mappable {
+	
+	var product = [Model4]()
+	var title = ""
+	
+	
+    required init?(map: Map) {
+        mapping(map: map)
+    }
+    
+    func mapping(map: Map) {
+    
+        product <- map["product"]
+		title <- map["title"]
+		
+    }
+} 
+
+class Model4 : Mappable {
+	
+	var minPurchaseAmount = ""
+	var exptectAnnuRate = 0
+	var durationType = ""
+	var id = ""
+	var duration = ""
+	
+	
+    required init?(map: Map) {
+        mapping(map: map)
+    }
+    
+    func mapping(map: Map) {
+    
+        minPurchaseAmount <- map["min_purchase_amount"]
+		exptectAnnuRate <- map["exptect_annu_rate"]
+		durationType <- map["duration_type"]
 		id <- map["id"]
-		views <- map["views"]
-		content <- map["content"]
-		updateTime <- map["update_time"]
-		createUid <- map["create_uid"]
-		types <- map["types"]
-		author <- map["author"]
-		pub <- map["pub"]
-		stat <- map["stat"]
-		img <- map["img"]
+		duration <- map["duration"]
+		
+    }
+} 
+
+class Model5 : Mappable {
+	
+	var durationType = ""
+	var exptectAnnuRate = 0
+	var duration = 0
+	var goodsName = ""
+	var minPurchaseAmount = 0
+	var id = ""
+	var maxInvestTotalAmount = 0
+	
+	
+    required init?(map: Map) {
+        mapping(map: map)
+    }
+    
+    func mapping(map: Map) {
+    
+        durationType <- map["duration_type"]
+		exptectAnnuRate <- map["exptect_annu_rate"]
+		duration <- map["duration"]
+		goodsName <- map["goods_name"]
+		minPurchaseAmount <- map["min_purchase_amount"]
+		id <- map["id"]
+		maxInvestTotalAmount <- map["max_invest_total_amount"]
 		
     }
 } 

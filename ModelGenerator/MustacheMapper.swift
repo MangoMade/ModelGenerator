@@ -58,7 +58,6 @@ class MustacheMapper {
         models.removeAll()
         parseModels(json: json, modelName: "<#name#>", isSubclass: true)
         
-        models.reverse()
         renderObj[RenderKey.File.models] = models
         return renderObj
     }
@@ -90,14 +89,21 @@ extension MustacheMapper {
     fileprivate func parseModels(json: JsonObject, modelName: String, isSubclass: Bool) {
         
         var properties = Properties()
-        modelObject(json: json, properties: &properties)
-        properties.reverse()
-        let model: ModelObject = [
+        var model: ModelObject = [
             RenderKey.File.Model.modelName : modelName,
             RenderKey.File.Model.isSubclass: isSubclass,
-            RenderKey.File.Model.properties: properties
         ]
+        /// 先占个坑，并且记录index
+        let index = models.count
         models.append(model)
+        
+        /// 生成model属性
+        modelObject(json: json, properties: &properties)
+        properties.reverse()
+        model[RenderKey.File.Model.properties] = properties
+        
+        /// 替换原来占坑的model
+        models[index] = model
     }
     
     fileprivate func modelObject(json: JsonObject,
@@ -142,41 +148,6 @@ extension MustacheMapper {
                 
             }
         }
-        
-//        json.forEach { (key, value) in
-//            
-//            
-//            if let value = value as? JsonObject {
-//                
-//                modelObject(json: value, mapperKeyPrefix: "\(key).", properties: &properties)
-//                
-//            } else if let objectArray = value as? Array<JsonObject> {
-//                
-//                if let aObject = objectArray.first {
-//                    let modelName = "Model\(models.count + 1)"
-//                    parseModels(json: aObject, modelName: modelName)
-//                    
-//                    let propertyMap = [
-//                        RenderKey.File.Model.Property.name          : key.lowerCamelCase,
-//                        RenderKey.File.Model.Property.mapperKey     : mapperKeyPrefix + key,
-//                        RenderKey.File.Model.Property.type          : modelName,
-//                        RenderKey.File.Model.Property.defaultValue  : "[\(modelName)]()"
-//                    ]
-//                    properties.append(propertyMap)
-//                }
-//                
-//            } else {
-//                
-//                let propertyMap = [
-//                    RenderKey.File.Model.Property.name          : key.lowerCamelCase,
-//                    RenderKey.File.Model.Property.mapperKey     : mapperKeyPrefix + key,
-//                    RenderKey.File.Model.Property.type          : mapType(value),
-//                    RenderKey.File.Model.Property.defaultValue  : mapDefaultValue(value)
-//                ]
-//                properties.append(propertyMap)
-//                
-//            }
-//        }
     }
     
     fileprivate func mapDefaultValue(_ value: Any) -> Any {
