@@ -119,7 +119,7 @@ extension MustacheMapper {
             
             if let value = value as? JsonObject {
                 
-                modelObject(json: value, mapperKeyPrefix: "\(key).", properties: &properties)
+                modelObject(json: value, mapperKeyPrefix: mapperKeyPrefix + key + ".", properties: &properties)
                 
             } else if let objectArray = value as? Array<JsonObject> {
                 

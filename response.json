@@ -1,111 +1,31 @@
 {
-  "banner": [
-        {
-            "exptect_annu_rate": 2.9, //利率
-            "duration_type": "月", //期限类型
-            "id": "288b3924-d90e-4198-9c63-b79212d0870f", //ID
-            "goods_name": "泰安银行精选理财第4期",//商品名称
-            "duration": 3, //期限
-            "min_purchase_amount": 1, //起购金额
-            "max_invest_total_amount": 15 //单笔最大购买金额
+    "data": {
+        "id": 16802,//id
+        "type": 2,//type
+        "title": "ufjsafds发动",//标题
+        "desc": "发动",//简介
+        "is_faved": 0,//是否收藏（1收藏，0未收藏）
+        "is_love": 1,//是否点赞（1点赞，0未点赞）
+        "loves": 0,//点赞数
+        "views": "4万",//浏览量（演唱次数）
+        "share_url": "http://www.kanfanews.com/web/accompaniment/index/16802/1",//分享URL
+        "share_image": "http://www.iopera.cn/assets/web/2017-5-8/img/defaultlogo.png",//分享图片
+        "uid": null,//前端用户id
+        "user": {
+            "id": 79,//前端用户id
+            "nickname": "苏异",//前端用户昵称
+            "image": "http://www.kanfanews.com/uploadfiles/thumbnail/0/14985676175114.jpg"//前端用户头像
         },
-    ],
-    "headlines": [ //头条
-        {
-            "title": "测试1",//标题
-            "status": "1",//类型 1 文章 2商品
-            "cid": "56fa64681a4842ac8ee8d7ba1d172813", //文章id
-            "product_id": null //商品id
-        },
-        {
-            "title": "11",
-            "status": "1",
-            "cid": "b9deca0d742544f484bc2ffb40e81415",
-            "product_id": null
-        },
-    
-    ],
-    "goods": [  //商品
-        {
-            "title": "长期理财", //模块名称
-            "product": [
-                {
-                    "id": "178a1f4e-8504-4183-979d-f8b7108e6ab6", //商品id
-                    "duration": "1",//投资期限
-                    "duration_type": "月", //期限类型
-                    "exptect_annu_rate": 9, //利率
-                    "min_purchase_amount": "100"//起投金额
-                },
-                {
-                    "id": "b39862a5-bac4-40a3-815b-ae85e0f06f96",
-                    "duration": "1",
-                    "duration_type": "月",
-                    "exptect_annu_rate": 10,
-                    "min_purchase_amount": "100"
-                }
-            ]
-        },
-        {
-            "title": "短期理财",
-            "product": [
-                {
-                    "id": "288b3924-d90e-4198-9c63-b79212d0870f",
-                    "duration": "3",
-                    "duration_type": "月",
-                    "exptect_annu_rate": 2.9,
-                    "min_purchase_amount": "1"
-                },
-                {
-                    "id": "feafd6a2-d4b0-4ff2-9eb5-dc5ce2e8efc1",
-                    "duration": "3",
-                    "duration_type": "月",
-                    "exptect_annu_rate": 2.9,
-                    "min_purchase_amount": "1"
-                }
-            ]
-        },
-        {
-            "title": "泰安理财",
-            "product": [
-                {
-                    "id": "288b3924-d90e-4198-9c63-b79212d0870f",
-                    "duration": "3",
-                    "duration_type": "月",
-                    "exptect_annu_rate": 2.9,
-                    "min_purchase_amount": "1"
-                },
-                {
-                    "id": "feafd6a2-d4b0-4ff2-9eb5-dc5ce2e8efc1",
-                    "duration": "3",
-                    "duration_type": "月",
-                    "exptect_annu_rate": 2.9,
-                    "min_purchase_amount": "1"
-                }
-            ]
-        },
-        {
-            "title": "新手模块",
-            "product": [
-                {
-                    "id": "17baa238-55c6-4e6c-9dde-75737572d8e7",
-                    "duration": "40",
-                    "duration_type": "天",
-                    "exptect_annu_rate": 9,
-                    "min_purchase_amount": "100",
-                    "desc": "售馨" //描述
-                },
-                {
-                    "id": "e295ce84-b924-45f5-a56e-a1a69f991ce4",
-                    "duration": "3",
-                    "duration_type": "月",
-                    "exptect_annu_rate": 10,
-                    "min_purchase_amount": "100",
-                    "desc": "售馨"
-                }
-            ]
+        "extend": {
+            "create_time": "09-06 15:36",//上传时间
+            "user_name": "法  啦啦啦咯",//演唱者
+            "music": "",//作品音乐
+            "rel_cid": 3,//作品关联伴奏id
+            "rel_words": "",//作品关联伴奏的歌词
+            "image": "http://www.kanfanews.com/uploadfiles/thumbnail/0/14985676175114.jpg"//封面图-头像
         }
-    ],
-    "unread": 0,
+    },
+    "api_version": ".",
     "error_code": 0,
     "error_msg": ""
 }
